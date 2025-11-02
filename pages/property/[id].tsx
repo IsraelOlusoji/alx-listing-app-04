@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import { PropertyProps } from "@/interfaces";
 import { Star } from "lucide-react";
+import ReviewSection from "@/components/property/ReviewSection";
 
 const PropertyDetailPage = () => {
   const router = useRouter();
@@ -147,12 +148,15 @@ const PropertyDetailPage = () => {
           </div>
 
           {/* Location Section */}
-          <div className="border-t border-gray-200 pt-6">
+          <div className="border-t border-gray-200 pt-6 mb-6">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Location</h2>
             <p className="text-gray-700">
               {property.address.state}, {property.address.city}, {property.address.country}
             </p>
           </div>
+
+          {/* Reviews Section */}
+          {property.id && <ReviewSection propertyId={property.id} />}
         </div>
 
         {/* Booking Card */}
