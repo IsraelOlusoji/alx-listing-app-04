@@ -1,10 +1,22 @@
 import React from "react";
+import { useRouter } from "next/router";
 import { PropertyProps } from "@/interfaces";
 import { Star } from "lucide-react";
 
 export const Card: React.FC<{ property: PropertyProps }> = ({ property }) => {
+  const router = useRouter();
+  
+  const handleClick = () => {
+    if (property.id) {
+      router.push(`/property/${property.id}`);
+    }
+  };
+
   return (
-    <div className="bg-white rounded-xl overflow-hidden hover:shadow-lg transition-shadow cursor-pointer relative">
+    <div 
+      onClick={handleClick}
+      className="bg-white rounded-xl overflow-hidden hover:shadow-lg transition-shadow cursor-pointer relative"
+    >
       {property.discount && (
         <div className="absolute top-3 left-3 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded z-10">
           {property.discount}% OFF
